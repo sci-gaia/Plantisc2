@@ -26,33 +26,33 @@ $id = $_SESSION['userid'];
 
 		<div id="wrapper">
 
-<?php 
-include('includes/header.php'); 
+<?php
+include('includes/header.php');
 include('includes/nav1.php');
-include('config1.php'); 
+include('config1.php');
 include('check.php');
 
 ?>
 
 <div id="content">
-  <align = "centre"><img src=" /images1/predict.jpg" align="centre" />
+  <align = "centre"><img src="images1/predict.jpg" align="centre" />
 </tr>
   <br>
   <br>
-    
-	
-	<br>
-	
 
-  <strong><font size="5" color="#000000">SELECT THE EXPERIMENT PARAMETERS</font></strong> 
+
+	<br>
+
+
+  <strong><font size="5" color="#000000">SELECT THE EXPERIMENT PARAMETERS</font></strong>
   <br>
   <br>
 
   <form action="exportcheck.php" method="post" target="_blank">
-    
+
 					    	<input type="hidden" name="id" value="<?php echo $id; ?>" />
 							<table width="450" bgcolor="#ffffff" style="background-color: #f1f1f1">
-							
+
 				</br>
 			 <td align="left"><strong><font size="3">
                     Select Treatment:
@@ -60,15 +60,15 @@ include('check.php');
                 <td>
                     <select id="treatment" name="treatment">
                        <option value="">------------------ SELECT ------------------</option>
-<?php 
-$sql=mysql_query("SELECT * FROM treatment order by treatment");  
+<?php
+$sql=mysql_query("SELECT * FROM treatment order by treatment");
 
-while($row=mysql_fetch_array($sql)) 
-{ 
-$treatment=$row['treatment']; 
-echo '<option value="'.$treatment.'">'.$treatment.'</option>'; 
+while($row=mysql_fetch_array($sql))
+{
+$treatment=$row['treatment'];
+echo '<option value="'.$treatment.'">'.$treatment.'</option>';
 }
- ?> 
+ ?>
 	                   </select>
                 </td>
             </tr>
@@ -86,15 +86,15 @@ echo '<option value="'.$treatment.'">'.$treatment.'</option>';
                 <td>
                     <select id="type" name="type">
                        <option value="">------------------ SELECT ------------------</option>
-<?php 
-$sql=mysql_query("SELECT * FROM type order by type");  
+<?php
+$sql=mysql_query("SELECT * FROM type order by type");
 
-while($row=mysql_fetch_array($sql)) 
-{ 
-$type=$row['type']; 
-echo '<option value="'.$type.'">'.$type.'</option>'; 
+while($row=mysql_fetch_array($sql))
+{
+$type=$row['type'];
+echo '<option value="'.$type.'">'.$type.'</option>';
 }
- ?> 
+ ?>
 	                   </select>
                 </td>
             </tr>
@@ -104,7 +104,7 @@ echo '<option value="'.$type.'">'.$type.'</option>';
 			<tr></tr><tr></tr>
 			<tr></tr><tr></tr>
 			<tr></tr><tr></tr>
-			<tr></tr><tr></tr>	
+			<tr></tr><tr></tr>
             <tr>
 <td align="left"><strong><font size="3">
                     Select Cytokinin Type:
@@ -112,15 +112,15 @@ echo '<option value="'.$type.'">'.$type.'</option>';
                 <td>
                     <select id="kinintype" name="kinintype">
                        <option value="">------------------ SELECT ------------------</option>
-<?php 
-$sql=mysql_query("SELECT * FROM kinintype order by kinintype");  
+<?php
+$sql=mysql_query("SELECT * FROM kinintype order by kinintype");
 
-while($row=mysql_fetch_array($sql)) 
-{ 
-$kinintype=$row['kinintype']; 
-echo '<option value="'.$kinintype.'">'.$kinintype.'</option>'; 
+while($row=mysql_fetch_array($sql))
+{
+$kinintype=$row['kinintype'];
+echo '<option value="'.$kinintype.'">'.$kinintype.'</option>';
 }
- ?> 
+ ?>
 	                   </select>
                 </td>
             </tr>
@@ -131,19 +131,19 @@ echo '<option value="'.$kinintype.'">'.$kinintype.'</option>';
 			<tr></tr><tr></tr>
 			<tr></tr><tr></tr>
 			<tr></tr><tr></tr>
-			<tr></tr><tr></tr>			
+			<tr></tr><tr></tr>
 			 <tr>
                 <tr>
             </tr>
-			
+
 					   <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
 					   <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
-							
+
 <tr><td bgcolor="#330033">&nbsp;</td>
 										<td bgcolor="#330033"><input type="submit" value="Export" /></td>
 								</tr>
         </table>
-					</form>	
+					</form>
 <br></br><br></br><br></br>
 
 </div> <!-- end #content -->

@@ -38,13 +38,13 @@ $userid = $_SESSION['userid'];
       </tr>
        <tr>
         <td>
-		
+
 	</tr>
-	 
+
    </table>
 <br></br>
 
-<align = "centre"><img src=" http://localhost/tissue/images1/upload.jpg" align="centre" />
+<align = "centre"><img src="images1/upload.jpg" align="centre" />
  <br></br>
 
 <?php
@@ -77,7 +77,7 @@ while ($rows = mysql_fetch_object($result))
   echo "  <td>$rows->treatment</td>\n";
   echo "  <td>$rows->type</td>\n";
    echo "  <td>$rows->contact</td>\n";
-	
+
   echo "  <td>( <a href='downloadcheck.php?fileid=$rows->fileid'>Download</a> )</td>\n";
   $sn = $sn + 1;
   echo " </tr>\n";
@@ -86,5 +86,5 @@ while ($rows = mysql_fetch_object($result))
 
 mysql_free_result($result);
 ?>
-		
+
 </div> <!-- end #content -->

@@ -1,12 +1,12 @@
 <div id="header h2">
-<align = "centre"><img src=" /images1/lin.jpg" align="centre" />
+<align = "centre"><img src="/lin.jpg" align="centre" />
 <center><table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
       <tr>
 	  
         <td>
-<align = "left"><img src=" /images1/logo1.jpg" align="left" />
-<align = "right"><img src=" /images1/logo1.jpg" align="right" />
-<align = "centre"><img src=" /images1/log.jpg" align="centre" />			
+<align = "left"><img src="/logo1.jpg" align="left" />
+<align = "right"><img src="/logo1.jpg" align="right" />
+<align = "centre"><img src="/log.jpg" align="centre" />			
 				
      
        </tr>
