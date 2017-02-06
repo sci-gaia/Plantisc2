@@ -2,12 +2,13 @@
 session_start();
 ?>
 <?php
-$host="localhost"; // Host name 
+$db = parse_ini_file("includes/db.ini");
+$host=$db['host']; // Host name
 // $username="root"; // Mysql username
 // $password=""; // Mysql password
-$username="tissue"; // Mysql username
-$password="tissue"; // Mysql password
-$db_name="tissue"; // Database name
+$username=$db['username']; // Mysql username
+$password=$db['password']; // Mysql password
+$db_name=$db['name']; // Database name
 $tbl_name="user"; // Table name
 
 // Connect to server and select databse.
