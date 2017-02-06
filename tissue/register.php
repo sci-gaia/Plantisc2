@@ -41,7 +41,7 @@ include('includes/nav.php');
 	
   </table>
 </br>
-  <align = "centre"><img src=" http://localhost/tissue/images1/ulogin.jpg" align="centre" />
+  <align = "centre"><img src=" /images1/ulogin.jpg" align="centre" />
 <form action="registercheck.php" method="post" form name="form1">
 					    	<input type="hidden" name="names" value="names" />
 							<table width="450" bgcolor="#ffffff" style="background-color: #f1f1f1">

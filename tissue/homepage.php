@@ -60,7 +60,7 @@ $names = strtoupper(stripslashes($names));
 
 <div id="content">
 
-<align = "centre"><img src=" http://localhost/tissue/images1/content.jpg" align="centre" />	
+<align = "centre"><img src=" /images1/content.jpg" align="centre" />	
 </div> <!-- end #content -->
 <?php include('includes/footer.php'); ?>
 </div> <!-- End #wrapper -->

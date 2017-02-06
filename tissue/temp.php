@@ -41,7 +41,7 @@
    </table>
 <br></br>
 
- 	  <h3><font color ="#727b84"><a href="http://localhost/tissue/data.xls" ><font color="#727b84">Click to Download Template</font></a></h2>
+ 	  <h3><font color ="#727b84"><a href="/data.xls" ><font color="#727b84">Click to Download Template</font></a></h2>
 	  	  
 	  </tr>
      

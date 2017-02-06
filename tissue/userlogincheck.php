@@ -36,10 +36,10 @@ $count=mysql_num_rows($result);
 if($count==1){
 // Register $myusername, $mypassword and redirect to file "login_success.php"
 $_SESSION['userid'] = $userid;
-header("Location: http://localhost/tissue/homepage.php");
+header("Location: /homepage.php");
 }
 else {
-echo "<center><h4><a href='http://localhost/tissue/userlogin.php'>Wrong Password. Retry</a></h4></center>";
+echo "<center><h4><a href='/userlogin.php'>Wrong Password. Retry</a></h4></center>";
 }
 ?>
 

@@ -57,7 +57,7 @@ if($hormone1 < $minsize || $hormone1 > $maxsize){
 
 
 echo "<center><font color='#000000'><br></br><br></br><h3>SORRY, THE CONCENTRATION VALUE <font color='#be345'>".$hormone1; echo "<font color='#000000'> WHICH YOU ENTERED MUST BE WITHIN THE RANGE   <font color='#be345'>     ".$minsize; echo "   <font color='#000000'>       AND              <font color='#be345'>    ".$maxsize;
-echo "<center><br></br><h4><a href='http://localhost/tissue/simulate.php'>CLICK TO TRY AGAIN</a></h4></center><br></br><br></br><br></br>";
+echo "<center><br></br><h4><a href='/simulate.php'>CLICK TO TRY AGAIN</a></h4></center><br></br><br></br><br></br>";
 
 exit;
 } 
@@ -77,7 +77,7 @@ $cytokininmin = $minsize;
 if($hormone2 < $minsize || $hormone2 > $maxsize){
 
 echo "<center><font color='#000000'><br></br><br></br><h3>SORRY, THE CONCENTRATION VALUE <font color='#be345'>".$hormone2; echo "<font color='#000000'> WHICH YOU ENTERED MUST BE WITHIN THE RANGE   <font color='#be345'>     ".$minsize; echo "   <font color='#000000'>       AND              <font color='#be345'>    ".$maxsize;
-echo "<center><br></br><h4><a href='http://localhost/tissue/simulate.php'>CLICK TO TRY AGAIN</a></h4></center><br></br><br></br><br></br>";
+echo "<center><br></br><h4><a href='/simulate.php'>CLICK TO TRY AGAIN</a></h4></center><br></br><br></br><br></br>";
 
 exit;
 } 

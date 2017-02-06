@@ -37,7 +37,7 @@ This site predicts Plant tissue culture concentration. The user can either use e
 The user can download existing data after successful registeration and login. 
 </p>
 <p>
-The user can also upload his data using a specified excel template called 'data.xls' which is also available at login. <font color ="#727b84"><a href="http://localhost/tissue/data.xls" ><font color="#727b84">Click to Download Template</font></a>
+The user can also upload his data using a specified excel template called 'data.xls' which is also available at login. <font color ="#727b84"><a href="/data.xls" ><font color="#727b84">Click to Download Template</font></a>
 </p>
 <p><font color = "#000000">
 The user is expected to edit the template, save it in a pre created folder called 'Tissue' in root directory of 'C' drive. 

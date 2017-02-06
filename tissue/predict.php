@@ -34,7 +34,7 @@ include('check.php');
 ?>
 
 <div id="content">
-  <align = "centre"><img src=" http://localhost/tissue/images1/predict.jpg" align="centre" />
+  <align = "centre"><img src=" /images1/predict.jpg" align="centre" />
 </tr>
   <br>
   <br>
