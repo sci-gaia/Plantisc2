@@ -11,8 +11,8 @@ $db_name="tissue"; // Database name
 $tbl_name="user"; // Table name
 
 // Connect to server and select databse.
-mysql_connect("$host", "$username", "$password")or die("cannot connect");
-mysql_select_db("$db_name")or die("cannot select DB");
+$link=mysqli_connect("$host", "$username", "$password")or die("cannot connect");
+mysqli_select_db($link,"$db_name")or die("cannot select DB");
 
 // username and password sent from form
 $myusername=$_POST['myusername'];
@@ -20,19 +20,19 @@ $password=$_POST['password'];
 $password = stripslashes($password);
 $myusername = strtoupper(stripslashes($myusername));
 // To protect MySQL injection (more detail about MySQL injection)
-$myusername = mysql_real_escape_string($myusername);
-$password = mysql_real_escape_string($password);
+$myusername = mysqli_real_escape_string($link, $myusername);
+$password = mysqli_real_escape_string($link, $password);
 $sql="SELECT * FROM $tbl_name WHERE username='$myusername' and password='$password'";
-$result=mysql_query($sql);
+$result=mysqli_query($link, $sql);
 
-$result = mysql_query("select userid from user WHERE username='$myusername' and password='$password'");
-while($rows=mysql_fetch_array($result))
+$result = mysqli_query($link, "select userid from user WHERE username='$myusername' and password='$password'");
+while($rows=mysqli_fetch_array($result))
 {
 	 $userid=$rows['userid'];
 }
 
 // Mysql_num_row is counting table row
-$count=mysql_num_rows($result);
+$count=mysqli_num_rows($result);
 // If result matched $myusername and $mypassword, table row must be 1 row
 
 if($count==1){
