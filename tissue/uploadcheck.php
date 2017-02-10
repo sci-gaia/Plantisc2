@@ -39,30 +39,31 @@ $id = $_SESSION['userid'];
 
 <?php
 
-include('check.php'); 
+include('check1.php'); 
 $treatment=$_POST['treatment']; 
 $type=$_POST['type']; 
 $kinintype=$_POST['kinintype']; 
 $count = 0; 
 
-$SQL10 = "DELETE FROM upload where userid='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'";
-$result = mysql_query($SQL10);
-$SQL11 = "DELETE FROM output where userid='$id' and treatment='$treatment' and type='$type'";
-$result = mysql_query($SQL11);
+$sql = "DELETE FROM upload where userid='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'";  
+$result=mysqli_query($connection,$sql);
+
+$sql1 = "DELETE FROM output where userid='$id' and treatment='$treatment' and type='$type'";  
+$result=mysqli_query($connection,$sql1);
+
 ini_set("display_errors",1);
 require_once 'excel_reader2.php';
-require_once 'check1.php';
 
-$sqls="SELECT max(fileid) as fileid FROM upload";
-$results=mysql_query($sqls);
-$row = mysql_fetch_assoc($results);
+$sql2 = "SELECT max(fileid) as fileid FROM upload";  
+$result=mysqli_query($connection,$sql2);
+$row = mysqli_fetch_assoc($result);
 $fileid = $row['fileid'];
 $fileid = $fileid + 1;
 
 
-$sql0="SELECT contact FROM user where userid='$id'";
-$results=mysql_query($sql0);
-$row = mysql_fetch_assoc($results);
+$sql2 = "SELECT contact FROM user where userid='$id'";  
+$result=mysqli_query($connection,$sql2);
+$row = mysqli_fetch_assoc($result);
 $contact = $row['contact'];
 
 $data = new Spreadsheet_Excel_Reader("C:\Tissue\Data.xls");
@@ -100,10 +101,8 @@ $html.="</tr>";
 $html.="</table>";
 echo $html;
 
-$SQL101 = "DELETE FROM upload where userid= ''";
-$result = mysql_query($SQL101);
-
-
+$sql2 = "DELETE FROM upload where userid= ''";  
+$result=mysqli_query($connection,$sql2);
 echo "<center><h1>UPLOAD SUCCESSFUL</a></h4></center>"; 
 ?>
 </tr>

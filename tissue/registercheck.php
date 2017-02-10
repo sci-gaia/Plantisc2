@@ -5,17 +5,6 @@ define('DB_PASSWORD', '');
 define('DB_DATABASE', 'tissue');
 $connection = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 
-/*$host="localhost"; // Host name 
-$username="root"; // Mysql username 
-$password=""; // Mysql password 
-$db_name="tissue"; // Database name 
-*/
-$tbl_name="user"; // Table name 
-
-// Connect to server and select databse.
-//mysql_connect("$host", "$username", "$password")or die("cannot connect"); 
-mysql_select_db("$db_name")or die("cannot select DB");
-
 // username and password sent from form 
 $names=$_POST['names']; 
 $username=$_POST['username']; 
@@ -27,21 +16,21 @@ echo "<center><h4><a href='http://localhost/tissue/register.php'>Please Confirm 
 exit;
 }
 
-$sqls="SELECT count(userid) as id FROM user";
-$results=mysql_query($sqls);
-$row = mysql_fetch_assoc($results);
+
+$sql2 = "SELECT count(userid) as id FROM user";  
+$result=mysqli_query($connection,$sql2);
+$row = mysqli_fetch_assoc($result);
 $userid = $row['id'];
 $userid = $userid + 1;
 
 // To protect MySQL injection (more detail about MySQL injection)
 $password = stripslashes($password);
-$names = mysql_real_escape_string($names);
-$username = mysql_real_escape_string($username);
-$sql="SELECT * FROM $tbl_name WHERE names='$names'";
-$result=mysql_query($sql);
+
+$sql="SELECT * FROM user WHERE names='$names'";
+$result=mysqli_query($connection,$sql);
 
 // Mysql_num_row is counting table row
-$count=mysql_num_rows($result);
+$count=mysqli_num_rows($result);
 // If result matched $myusername and $mypassword, table row must be 1 row
 
 if($count==1){
@@ -51,7 +40,7 @@ echo "<center><h4><a href='http://localhost/tissue/register.php'>User already in
 }
 else {
 $SQL = "INSERT INTO user (userid, names, username, password, contact) VALUES ('$userid','$names', '$username' , '$password', '$contact')";
-$result = mysql_query($SQL);
+mysqli_query($connection,$SQL);
 
 echo "<center><h4><a href='http://localhost/tissue/index.php'>Registration was successful. Click to Continue</a></h4></center>";
 }

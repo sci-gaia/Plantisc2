@@ -32,20 +32,19 @@ $id = $_SESSION['userid'];
 include('includes/header.php'); 
 include('includes/nav1.php');
 include('check1.php');
-include('check.php');
 $treatment=$_POST['treatment'];
 $type=$_POST['type'];
 $hormone1=$_POST['hormone1'];
 $hormone2=$_POST['hormone2'];
 $kinintype=$_POST['kinintype'];
 
-$sql3="SELECT * FROM upload WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'";
-$result3=mysql_query($sql3);
-if (mysql_num_rows($result3) > 0) {
+$sql = "SELECT * FROM upload WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'";  
+$result=mysqli_query($connection,$sql);
+if (mysqli_num_rows($result) > 0) {
 // get the minimum and maximum value of hormone1 
-$sql5="SELECT min(auxin) as minsize, max(auxin) as maxsize FROM upload WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'";
-$result5=mysql_query($sql5);
-$row = mysql_fetch_assoc($result5);
+$sql0 = "SELECT min(auxin) as minsize, max(auxin) as maxsize FROM upload WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'";  
+$result0=mysqli_query($connection,$sql0);
+$row = mysqli_fetch_assoc($result0);
 $minsize = $row['minsize'];
 $maxsize = $row['maxsize'];
 
@@ -53,15 +52,14 @@ $auxinmax = $maxsize;
 $auxinmin = $minsize;
 
 // get the minimum and maximum value of hormone2 
-$sql15="SELECT min(cytokinin) as minsize, max(cytokinin) as maxsize FROM upload WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'";
-$result15=mysql_query($sql15);
-$row = mysql_fetch_assoc($result15);
+$sql1 = "SELECT min(cytokinin) as minsize, max(cytokinin) as maxsize FROM upload WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'";  
+$result1=mysqli_query($connection,$sql1);
+$row = mysqli_fetch_assoc($result1);
 $minsize = $row['minsize'];
 $maxsize = $row['maxsize'];
 
 $cytokininmax = $maxsize; 
 $cytokininmin = $minsize;
-
 }
 else {
 echo '<br></br><br></br><br></br><br></br>';
@@ -70,10 +68,10 @@ echo '<br></br><br></br><br></br><br></br>';
 
 exit;
 }
-
 // get the total number of records and make sure it matches
-$results = mysql_query("select (COUNT(auxin)) as n1, (COUNT(auxin)) as n2 from upload WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype' "); 
-while($rows=mysql_fetch_array($results))   
+$sql2 = "select (COUNT(auxin)) as n1, (COUNT(auxin)) as n2 from upload WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype' ";  
+$result2=mysqli_query($connection,$sql2);
+while($rows=mysqli_fetch_array($result2))  
 {
 	 $n1=$rows['n1'];
 	  $n2=$rows['n2'];
@@ -84,8 +82,9 @@ echo "THE NUMBER OF UPLOADED INDEPENDENT VARIABLES DOES NOT MATCH. PLS VERIFY AN
 exit;
 }
 // get the sum of x1, x2 and response
-$result = mysql_query("select (sum(auxin)) as sumx1,(sum(cytokinin)) as sumx2, (sum(response)) as sumresponse from upload WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype' ");  
-while($rows=mysql_fetch_array($result))   
+$sql3 = "select (sum(auxin)) as sumx1,(sum(cytokinin)) as sumx2, (sum(response)) as sumresponse from upload WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'";  
+$result3=mysqli_query($connection,$sql3);
+while($rows=mysqli_fetch_array($result3))   
 {
 	 $sumx1=$rows['sumx1'];
 	 $sumx2=$rows['sumx2'];
@@ -96,8 +95,9 @@ while($rows=mysql_fetch_array($result))
 }
 
 // Get the sum of the x1*x2, x1*response, x2*response
-$result1 = mysql_query("select sum(auxin * cytokinin) as sumx1x2, sum(auxin * response) as sumx1response, sum(cytokinin * response) as sumx2response from upload WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'");  
-while($rows=mysql_fetch_array($result1))   
+$sql4 = "select sum(auxin * cytokinin) as sumx1x2, sum(auxin * response) as sumx1response, sum(cytokinin * response) as sumx2response from upload WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'";  
+$result4=mysqli_query($connection,$sql4);
+while($rows=mysqli_fetch_array($result4)) 
 {
 	 $sumx1x2=$rows['sumx1x2'];
 	 $sumx1response=$rows['sumx1response'];
@@ -105,8 +105,9 @@ while($rows=mysql_fetch_array($result1))
 }
 
 //Get the sum of x1 squared, x2 squared, response squared respectively
-$result2 = mysql_query("select sum(auxin * auxin) as sumx1squared, sum(cytokinin * cytokinin) as sumx2squared, sum(response * response) as sumresponsesquared from upload WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'");  
-while($rows=mysql_fetch_array($result2))   
+$sql5 = "select sum(auxin * auxin) as sumx1squared, sum(cytokinin * cytokinin) as sumx2squared, sum(response * response) as sumresponsesquared from upload WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'";  
+$result5=mysqli_query($connection,$sql5);
+while($rows=mysqli_fetch_array($result5))
 {
 	 $sumx1squared=$rows['sumx1squared'];
 	 $sumx2squared=$rows['sumx2squared'];
@@ -116,8 +117,9 @@ $x1_x1barsum = 0;
 $x2_x2barsum = 0;
 $response_responsebarsum = 0;
  // get the standard deviation of x1, x2 and response
-$result = mysql_query("select auxin,cytokinin,response from upload WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'");  
-while($rows=mysql_fetch_array($result))   
+$sql6 = "select auxin,cytokinin,response from upload WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'";  
+$result6=mysqli_query($connection,$sql6);
+while($rows=mysqli_fetch_array($result6))  
 {
 	 $auxin=$rows['auxin'];
 	 $x1_x1bar = $auxin - $x1bar;
@@ -206,19 +208,20 @@ $increment = 0.1;
 $cytokininindex = $index;
 $testarray = array();
 
-$result4 = mysql_query("select auxinname, cytokininname, treatment, type from upload WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'");  
-while($rows=mysql_fetch_array($result4))   
+$sql7 = "select auxinname, cytokininname, treatment, type from upload WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'";  
+$result7=mysqli_query($connection,$sql7);
+while($rows=mysqli_fetch_array($result7))   
 {
 	 $auxinname=$rows['auxinname'];
 	 $treatment=$rows['treatment'];
 	 $type=$rows['type'];
-	  $cytokininname=$rows['cytokininname'];
+	 $cytokininname=$rows['cytokininname'];
 }
 
 
 
-$SQL10 = "DELETE FROM output where userid='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'";
-$result = mysql_query($SQL10);
+$sql10 = "DELETE FROM output where userid='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'";  
+$result3=mysqli_query($connection,$sql10);
 
 for($i=0;$i<=$auxinindex;$i++){
 for($j=0;$j<=$cytokininindex-1;$j++){
@@ -229,18 +232,18 @@ mysqli_query($connection,$query1);
 }
 }
 
-$SQL11 = "DELETE FROM output where userid='$id' and cytokinin='' or auxin=''";
-$result = mysql_query($SQL11);
+$sql11 = "DELETE FROM output where userid='$id' and cytokinin='' or auxin=''";  
+$result11=mysqli_query($connection,$sql11);
 
-
-$result5 = mysql_query("select max(response) as yield from output WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'");  
-while($rows=mysql_fetch_array($result5))   
+$sql8 = "select max(response) as yield from output WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype'";  
+$result8=mysqli_query($connection,$sql8);
+while($rows=mysqli_fetch_array($result8))  
 {
 	 $yield=$rows['yield'];
 }
 
-$result6 = mysql_query("select auxin, cytokinin from output WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype' and response ='$yield'");  
-$row = mysql_fetch_assoc($result6);
+$sql9 = "select auxin, cytokinin from output WHERE userid ='$id' and treatment='$treatment' and type='$type' and cytokininname='$kinintype' and response ='$yield'";  
+$result9=mysqli_query($connection,$sql9);
 $auxin = $row['auxin'];
 $cytokinin = $row['cytokinin'];
 ?>

@@ -10,10 +10,7 @@ $DB_Password = ""; // MySQL Password
 $DB_DBName = "tissue"; // MySQL Database Name
 $DB_TBLName = "upload"; // MySQL Table Name
 
-
-
-
- $sql = "SELECT auxin, auxinname, cytokinin, cytokininname, response, treatment, type FROM upload where fileid ='$fileid'";
+$sql = "SELECT auxin, auxinname, cytokinin, cytokininname, response, treatment, type FROM upload where fileid ='$fileid'";
    
 /***** DO NOT EDIT BELOW LINES *****/
 // Create MySQL connection

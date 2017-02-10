@@ -49,12 +49,11 @@ $userid = $_SESSION['userid'];
 
 <?php
 ini_set('display_errors', E_ALL);
-include "check.php";
+include "check1.php";
 $sn = 1;
-
-  $sql = "SELECT distinct fileid, auxinname, cytokininname, treatment, type, contact FROM upload order by fileid asc";
-$result = mysql_query($sql);
-$rows = mysql_num_rows($result);
+$sql = "SELECT distinct fileid, auxinname, cytokininname, treatment, type, contact FROM upload order by fileid asc";
+$result=mysqli_query($connection,$sql); 
+$rows = mysqli_num_rows($result);
 
 echo "<table>\n";
 echo " <tr>\n";
@@ -68,7 +67,7 @@ echo "  <td>Contact</td>\n";
 echo "  <td> </td>\n";
 echo " </tr>\n";
 
-while ($rows = mysql_fetch_object($result))
+while ($rows = mysqli_fetch_object($result))
   {
   echo " <tr>\n";
   echo "  <td>$rows->fileid</td>\n";
@@ -84,7 +83,7 @@ while ($rows = mysql_fetch_object($result))
 
   }
 
-mysql_free_result($result);
+mysqli_free_result($result);
 ?>
 		
 </div> <!-- end #content -->

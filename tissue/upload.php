@@ -27,14 +27,18 @@ $userid = $_SESSION['userid'];
 		<div id="wrapper">
 
 <?php 
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_DATABASE', 'tissue');
+$connection = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 include('includes/header.php'); 
 include('includes/nav1.php');
-include('check.php'); 
-$sql0=mysql_query("SELECT names FROM user where userid='$userid'");  
-
-while($row=mysql_fetch_array($sql0)) 
+$sql = "SELECT names FROM user where userid='$userid'";  
+$result=mysqli_query($connection,$sql);
+while($rows=mysqli_fetch_array($result)) 
 { 
-$names = $row['names']; 
+$names = $rows['names']; 
 }
 $names = strtoupper(stripslashes($names));
 ?>
@@ -74,11 +78,11 @@ $names = strtoupper(stripslashes($names));
                     <select id="treatment" name="treatment">
                        <option value="">------------------ SELECT ------------------</option>
 <?php 
-$sql=mysql_query("SELECT * FROM treatment order by treatment");  
-
-while($row=mysql_fetch_array($sql)) 
+$sql = "SELECT * FROM treatment order by treatment";  
+$result=mysqli_query($connection,$sql);
+while($rows=mysqli_fetch_array($result)) 
 { 
-$treatment=$row['treatment']; 
+$treatment=$rows['treatment']; 
 echo '<option value="'.$treatment.'">'.$treatment.'</option>'; 
 }
  ?> 
@@ -100,11 +104,11 @@ echo '<option value="'.$treatment.'">'.$treatment.'</option>';
                     <select id="type" name="type">
                        <option value="">------------------ SELECT ------------------</option>
 <?php 
-$sql=mysql_query("SELECT * FROM type order by type");  
-
-while($row=mysql_fetch_array($sql)) 
+$sql = "SELECT * FROM type order by type";  
+$result=mysqli_query($connection,$sql);
+while($rows=mysqli_fetch_array($result))
 { 
-$type=$row['type']; 
+$type=$rows['type']; 
 echo '<option value="'.$type.'">'.$type.'</option>'; 
 }
  ?> 
@@ -131,11 +135,11 @@ echo '<option value="'.$type.'">'.$type.'</option>';
                     <select id="kinintype" name="kinintype">
                        <option value="">------------------ SELECT ------------------</option>
 <?php 
-$sql=mysql_query("SELECT * FROM kinintype order by kinintype");  
-
-while($row=mysql_fetch_array($sql)) 
+$sql = "SELECT * FROM kinintype order by kinintype";  
+$result=mysqli_query($connection,$sql);
+while($rows=mysqli_fetch_array($result))
 { 
-$kinintype=$row['kinintype']; 
+$kinintype=$rows['kinintype']; 
 echo '<option value="'.$kinintype.'">'.$kinintype.'</option>'; 
 }
  ?> 
